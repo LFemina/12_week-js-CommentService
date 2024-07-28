@@ -1,3 +1,7 @@
+function checkSpam(str) {
+    return str.replace(/viagra|XXX/ig, '***');
+}
+
 const button = document.getElementById('btn');
         button.onclick = function () {
             const name = document.getElementById('name');
@@ -11,8 +15,8 @@ const button = document.getElementById('btn');
             document.getElementById('img').src = pict.value;
             pict.value = '';
 
-            const message = document.getElementById('message');
-            const userComment = document.getElementById('usercomment');
-            userComment.textContent = message.value;
-            message.value = '';
+            const message = document.getElementById('message').value.trim();
+            const result = checkSpam(message);
+            document.getElementById('usercomment').textContent = result.charAt(0).toUpperCase() + result.substr(1).toLowerCase();
+            document.getElementById('message').value = '';
         }
